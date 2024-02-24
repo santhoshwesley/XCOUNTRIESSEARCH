@@ -23,9 +23,11 @@ function App() {
 
   const handleInput = (e) => {
     const searchQuery = e.target.value.toLowerCase();
-    const filtered = countries.filter((country) =>
-      country.name.common.toLowerCase().includes(searchQuery)
-    );
+    const filtered = searchQuery
+      ? countries.filter((country) =>
+          country.name.common.toLowerCase().includes(searchQuery)
+        )
+      : countries;
     setFilteredCountries(filtered);
   };
 
@@ -40,7 +42,7 @@ function App() {
       </div>
       <div className="container">
         {filteredCountries.map((country) => (
-          <div key={country.ccn3} className="flexContainer">
+          <div key={country.ccn3} className="countryCard">
             <img
               src={country.flags.png}
               alt={country.name.common}
